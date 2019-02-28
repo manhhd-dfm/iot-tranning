@@ -9,7 +9,6 @@
 
 import React, {Component} from 'react';
 import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image, Navigator} from 'react-native';
-import ScrollViewExample from './scroll_view.js';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,8 +20,8 @@ const instructions = Platform.select({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    //justifyContent: 'center',
+    //alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 50,
-    alignItems: 'center',
+    //alignItems: 'center',
     resizeMode: 'contain'
   },
 });
@@ -59,13 +58,13 @@ export default class App extends Component<Props> {
       textValue: temp});
     }
 
-  _onPressButton() {
+  onPressAlert() {
     Alert.alert('Hey!')
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Image style={styles.image} source={require('./src/image/DFM-Logo.png')} />
         <Text style={styles.welcome}>Welcome to Martin!</Text>
         <TextInput
@@ -76,7 +75,7 @@ export default class App extends Component<Props> {
         <Button title="ENTER" onPress={this.onPress} />
         <Text style={{padding: 10, fontSize: 65}}>{this.state.textValue}</Text>
 
-        <TouchableOpacity onPress={this._onPressButton}>
+        <TouchableOpacity onPress={this.onPressAlert}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>TouchableOpacity</Text>
           </View>
@@ -87,7 +86,7 @@ export default class App extends Component<Props> {
           renderItem={({item}) => <Text>{item.key}</Text>}
         />
 
-      </View>
+      </ScrollView>
     );
   }
 }
