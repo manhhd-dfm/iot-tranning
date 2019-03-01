@@ -20,7 +20,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+export default class Home extends Component<Props> {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,6 +57,3 @@ export default class App extends Component<Props> {
   }
 }
 
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
