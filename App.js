@@ -9,6 +9,11 @@
 
 import React, {Component} from 'react';
 import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image, Navigator} from 'react-native';
+import dfmLogo from './src/image/DFM-Logo.png';
+import styles from './styles.js';
+
+import Home from './components/Home.js';
+import Settings from './components/Settings.js';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,30 +22,6 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //justifyContent: 'center',
-    //alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },  
-  image: {
-    width: 200,
-    height: 50,
-    //alignItems: 'center',
-    resizeMode: 'contain'
-  },
-});
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -53,9 +34,8 @@ export default class App extends Component<Props> {
   }
 
   onPress = () => {
-    var temp = this.state.text;
-    this.setState({
-      textValue: temp});
+    const textValue = this.state.text;
+    this.setState({textValue});
     }
 
   onPressAlert() {
@@ -64,8 +44,8 @@ export default class App extends Component<Props> {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Image style={styles.image} source={require('./src/image/DFM-Logo.png')} />
+      <View style={styles.mainContainer}>
+        <Image style={styles.image} source={dfmLogo} />
         <Text style={styles.welcome}>Welcome to Martin!</Text>
         <TextInput
           style={{height: 40}}  
@@ -86,7 +66,7 @@ export default class App extends Component<Props> {
           renderItem={({item}) => <Text>{item.key}</Text>}
         />
 
-      </ScrollView>
+      </View>
     );
   }
 }
