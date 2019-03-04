@@ -172,4 +172,12 @@ module.exports = {
     //alignItems: 'center',
     resizeMode: 'contain'
   },
+  scroll: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+    margin: 10,
+  },
+  row: {
+    margin: 10
+  },
 };

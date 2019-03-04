@@ -15,6 +15,7 @@ import styles from './styles.js';
 
 import HomeScreen     from './components/Home.js';
 import SettingsScreen from './components/Settings.js';
+import BLEscreen      from './components/BLEscreen.js';
 
 
 const AppNavigator = createStackNavigator({
@@ -23,6 +24,9 @@ const AppNavigator = createStackNavigator({
   },
   Details: {
     screen: SettingsScreen,
+  },  
+  BLE: {
+    screen: BLEscreen,
   },
 }, {
     initialRouteName: 'Home',

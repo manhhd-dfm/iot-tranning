@@ -8,18 +8,11 @@
  */
 
 import React, {Component} from 'react';
-import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image, Navigator} from 'react-native';
+import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image} from 'react-native';
 import {StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
 
-import dfmLogo from '../src/image/DFM-Logo.png';
-import styles from '../styles.js';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import dfmLogo  from '../src/image/DFM-Logo.png';
+import styles   from '../styles.js';
 
 type Props = {};
 export default class Settings extends Component<Props> {
