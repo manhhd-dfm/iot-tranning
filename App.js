@@ -9,68 +9,23 @@
 
 import React, {Component} from 'react';
 import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image, Navigator} from 'react-native';
-import dfmLogo from './src/image/DFM-Logo.png';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+
 import styles from './styles.js';
 
-import Home from './components/Home.js';
-import Settings from './components/Settings.js';
+import HomeScreen     from './components/Home.js';
+import SettingsScreen from './components/Settings.js';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Details: {
+    screen: SettingsScreen,
+  },
+}, {
+    initialRouteName: 'Home',
 });
 
-
-type Props = {};
-export default class App extends Component<Props> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-      textValue: ''
-    };
-  }
-
-  onPress = () => {
-    const textValue = this.state.text;
-    this.setState({textValue});
-    }
-
-  onPressAlert() {
-    Alert.alert('Hey!')
-  }
-
-  render() {
-    return (
-      <View style={styles.mainContainer}>
-        <Image style={styles.image} source={dfmLogo} />
-        <Text style={styles.welcome}>Welcome to Martin!</Text>
-        <TextInput
-          style={{height: 40}}  
-          placeholder="Type here something!"
-          onChangeText={(text) => this.setState({text})}
-        />
-        <Button title="ENTER" onPress={this.onPress} />
-        <Text style={{padding: 10, fontSize: 65}}>{this.state.textValue}</Text>
-
-        <TouchableOpacity onPress={this.onPressAlert}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableOpacity</Text>
-          </View>
-        </TouchableOpacity>
-
-        <FlatList
-          data={[{key: 'a'}, {key: 'b'}]}
-          renderItem={({item}) => <Text>{item.key}</Text>}
-        />
-
-      </View>
-    );
-  }
-}
-
-
-// skip this line if using Create React Native App
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+export default createAppContainer(AppNavigator);

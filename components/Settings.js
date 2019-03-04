@@ -9,6 +9,8 @@
 
 import React, {Component} from 'react';
 import {FlatList, Platform, StyleSheet, ScrollView, Text, View, AppRegistry, TextInput, TouchableOpacity, Button, Alert, Image, Navigator} from 'react-native';
+import {StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+
 import dfmLogo from '../src/image/DFM-Logo.png';
 import styles from '../styles.js';
 
@@ -61,7 +63,17 @@ export default class Settings extends Component<Props> {
           data={[{key: 'a'}, {key: 'b'}]}
           renderItem={({item}) => <Text>{item.key}</Text>}
         />
-
+        <Button
+          title="Back to Home"
+          onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Home' })
+              ],
+            }))
+          }}
+        />
       </ScrollView>
     );
   }
