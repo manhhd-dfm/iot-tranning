@@ -34,40 +34,31 @@ export default class Settings extends Component<Props> {
   }
 
   render() {
+    const { navigation } = this.props;
+    const itemId = navigation.getParam('itemId', 'NO-ID');
+    const otherParam = navigation.getParam('otherParam', 'some default value');
+
     return (
-      <ScrollView style={styles.container}>
-        <Image style={styles.image} source={dfmLogo} />
-        <Text style={styles.welcome}>Welcome to setting Tab!</Text>
-        <TextInput
-          style={{height: 40}}  
-          placeholder="Type here something!"
-          onChangeText={(text) => this.setState({text})}
-        />
-        <Button title="ENTER" onPress={this.onPress} />
-        <Text style={{padding: 10, fontSize: 65}}>{this.state.textValue}</Text>
-
-        <TouchableOpacity onPress={this.onPressAlert}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>TouchableOpacity</Text>
-          </View>
-        </TouchableOpacity>
-
-        <FlatList
-          data={[{key: 'a'}, {key: 'b'}]}
-          renderItem={({item}) => <Text>{item.key}</Text>}
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+        <Text>itemId: {JSON.stringify(itemId)}</Text>
+        <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+        <Button
+          title="Go to Details... again"
+          onPress={() =>
+            this.props.navigation.push('Details', {
+              itemId: Math.floor(Math.random() * 100),
+            })}
         />
         <Button
-          title="Back to Home"
-          onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Home' })
-              ],
-            }))
-          }}
+          title="Go to Home"
+          onPress={() => this.props.navigation.navigate('Home')}
         />
-      </ScrollView>
+        <Button
+          title="Go back"
+          onPress={() => this.props.navigation.goBack()}
+        />
+      </View>
     );
   }
 }

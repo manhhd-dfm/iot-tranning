@@ -41,7 +41,7 @@ export default class Home extends Component<Props> {
         <Text style={styles.welcome}>This is your home screen!</Text>
         <TextInput
           style={{height: 40}}  
-          placeholder="Type here something!"
+          placeholder="Input text for setting screen!"
           onChangeText={(text) => this.setState({text})}
         />
         <Button title="ENTER" onPress={this.onPress} />
@@ -50,12 +50,11 @@ export default class Home extends Component<Props> {
         <Button
           title="Go to Settings"
           onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Details' })
-              ],
-            }))
+            /* 1. Navigate to the Details route with params */
+            this.props.navigation.navigate('Details', {
+              itemId: 86,
+              otherParam: this.state.text,
+            });
           }}
         />
 
