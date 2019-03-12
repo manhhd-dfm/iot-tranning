@@ -16,7 +16,9 @@ import styles from './styles.js';
 import HomeScreen     from './components/Home.js';
 import SettingsScreen from './components/Settings.js';
 import BLEscreen      from './components/BLEscreen.js';
-
+import BLEplxscreen   from './components/BLEplxscreen.js';
+import Geoloc    from './components/Geolocation.js';
+import List    from './components/List.js';
 
 const AppNavigator = createStackNavigator({
   Home: {
@@ -28,7 +30,17 @@ const AppNavigator = createStackNavigator({
   BLE: {
     screen: BLEscreen,
   },
-}, {
+  BLEplx: {
+    screen: BLEplxscreen,
+  },
+  Geoloc: {
+    screen: Geoloc,
+  },  
+  List: {
+    screen: List,
+  },
+}, 
+{
     initialRouteName: 'Home',
 });
 

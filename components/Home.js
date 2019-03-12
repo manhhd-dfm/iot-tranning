@@ -59,16 +59,40 @@ export default class Home extends Component<Props> {
         />
 
         <Button
-          title="Go to BLE"
+          title="Go to BLE plx"
           onPress={() => {
             this.props.navigation.dispatch(StackActions.reset({
               index: 0,
               actions: [
-                NavigationActions.navigate({ routeName: 'BLE' })
+                NavigationActions.navigate({ routeName: 'BLEplx' })
               ],
             }))
           }}
         />
+
+        <Button
+          title="Go to Geolocation"
+          onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Geoloc' })
+              ],
+            }))
+          }}
+        />        
+
+        <Button
+          title="Go to List"
+          onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'List' })
+              ],
+            }))
+          }}
+        />  
 
       </View>
     );

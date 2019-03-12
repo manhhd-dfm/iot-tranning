@@ -44,6 +44,20 @@ module.exports = {
     width: width * 0.95,
     padding: 10
   },
+
+  textMovieTitle: {
+    color: 'red',
+    fontSize: 30,
+    marginLeft: "14%",
+    textAlign: 'center'
+  },
+  textMovieYear: {
+    color: 'blue',
+    fontSize: 20,
+    marginLeft: "14%",
+    textAlign: 'right'
+  },
+
   colorRed: {color: 'red'},
   marTop5: {marginTop: width * 0.02},
   twoCol: {flexDirection: 'row', flexWrap: 'wrap'},
@@ -180,4 +194,17 @@ module.exports = {
   row: {
     margin: 10
   },
+  result: {
+    borderWidth: 1,
+    borderColor: '#666',
+    width: '100%',
+    paddingHorizontal: 16
+  },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 12,
+    width: '100%'
+  }
 };
