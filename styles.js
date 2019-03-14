@@ -206,5 +206,8 @@ module.exports = {
     alignItems: 'center',
     marginVertical: 12,
     width: '100%'
-  }
+  },
+  containerMap:{
+    flex: 1,
+  },
 };

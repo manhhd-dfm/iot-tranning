@@ -56,31 +56,7 @@ export default class Home extends Component<Props> {
               otherParam: this.state.text,
             });
           }}
-        />
-
-        <Button
-          title="Go to BLE plx"
-          onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'BLEplx' })
-              ],
-            }))
-          }}
-        />
-
-        <Button
-          title="Go to Geolocation"
-          onPress={() => {
-            this.props.navigation.dispatch(StackActions.reset({
-              index: 0,
-              actions: [
-                NavigationActions.navigate({ routeName: 'Geoloc' })
-              ],
-            }))
-          }}
-        />        
+        />       
 
         <Button
           title="Go to List"
@@ -89,6 +65,18 @@ export default class Home extends Component<Props> {
               index: 0,
               actions: [
                 NavigationActions.navigate({ routeName: 'List' })
+              ],
+            }))
+          }}
+        />  
+
+        <Button
+          title="Go to Map"
+          onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Map' })
               ],
             }))
           }}
