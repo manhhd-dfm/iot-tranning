@@ -27,8 +27,7 @@ const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const SPACE = 0.01;
-var positionLat = 0.0;
-var positionLng = 0.0;
+
 type Props = {};
 export default class Map extends Component<Props> {
   constructor(props) {
@@ -43,10 +42,19 @@ export default class Map extends Component<Props> {
     updatesEnabled: false,
     updatesMarker: true,
     location: {},
-    permission: true
+    permission: true,
+    positionLat: 0.0,
+    positionLng: 0.0
   };
 
-  
+  componentDidMount(){
+    this.getLocation();
+  }
+
+  componentWillMount(){
+    this.getLocation();
+  }  
+
   hasLocationPermission = async () => {
 
     const hasPermission = await PermissionsAndroid.check(
@@ -82,8 +90,7 @@ export default class Map extends Component<Props> {
       Geolocation.getCurrentPosition(
         (position) => {
           this.setState({ location: position, loading: false });
-          positionLat = position.coords.latitude;
-          positionLng = position.coords.longitude;
+          this.setState({positionLat:position.coords.latitude, positionLng: position.coords.longitude});
           console.log(position);
         },
         (error) => {
@@ -104,8 +111,7 @@ export default class Map extends Component<Props> {
       this.watchId = Geolocation.watchPosition(
         (position) => {
           this.setState({ location: position });
-          positionLat = position.coords.latitude;
-          positionLng = position.coords.longitude;
+          this.setState({positionLat:position.coords.latitude, positionLng: position.coords.longitude});
           console.log(position);
         },
         (error) => {
@@ -127,7 +133,6 @@ export default class Map extends Component<Props> {
   render() {
     const { containerMap } = styles;
     const { loading, location, updatesEnabled } = this.state;
-    const getPosition = this.getLocation;
 
     return (
       <View style={{flex:1}}>
@@ -135,8 +140,8 @@ export default class Map extends Component<Props> {
             provider={PROVIDER_GOOGLE} // remove if not using Google Maps
             style={containerMap}
             region={{
-              latitude: positionLat,
-              longitude: positionLng,
+              latitude: this.state.positionLat,
+              longitude: this.state.positionLng,
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121,
             }}
@@ -144,29 +149,20 @@ export default class Map extends Component<Props> {
             <Marker
               onPress={() => this.setState({ marker1: !this.state.marker1 })}
               coordinate={{
-                latitude: positionLat,
-                longitude: positionLng,
+                latitude: this.state.positionLat,
+                longitude: this.state.positionLng,
               }}
               centerOffset={{ x: -18, y: -60 }}
               anchor={{ x: 0.69, y: 1 }}
             ></Marker>
         </MapView>
-        <Button title='Get Location' onPress={this.getLocation} disabled={loading || updatesEnabled} />
-        <View style={styles.buttons}>
-            <Button title='Start Observing' onPress={this.getLocationUpdates} disabled={updatesEnabled} />
-            <Button title='Stop Observing' onPress={this.removeLocationUpdates} disabled={!updatesEnabled} />
-        </View>
 
-        <View style={styles.result}>
-            <Text>{positionLat}</Text>
-            <Text>{positionLng}</Text>
-            <Text>{JSON.stringify(location, null, 4)}</Text>
-            <Text>{this.state.permission}</Text>
+        <View style={styles.buttons}>
+          <Button
+            title="Go to Home"
+            onPress={() => this.props.navigation.navigate('Home')}
+          />
         </View>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
       </View>
     );
   }
